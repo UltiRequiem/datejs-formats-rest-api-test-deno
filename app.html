@@ -34,9 +34,9 @@
         console.group("First Request");
 
         console.log(`Sended date: ${sendedDate}`);
-        console.log(`Server Response ${data}`);
+        console.log(`Server Response ${data.date}`);
 
-        console.log(`${sendedDate} === ${data}? ${sendedDate === data}`);
+        console.log(`Equal? ${date.toISOString() === data.date}`);
 
         console.groupEnd();
       });

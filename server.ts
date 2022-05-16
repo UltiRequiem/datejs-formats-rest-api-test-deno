@@ -41,7 +41,7 @@ const handler: Handler = async (request) => {
 
     const date = new Date(data.date);
 
-    return new Response(`${date.valueOf()}`);
+    return new Response(JSON.stringify({ date: date.toISOString() }));
   }
 
   return new Response("Route not found.", { status: 404 });
