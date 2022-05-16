@@ -31,8 +31,14 @@
 
         const data = await response.json();
 
-              console.log(`Sended date: ${sendedDate}`);
+        console.group("First Request");
+
+        console.log(`Sended date: ${sendedDate}`);
         console.log(`Server Response ${data}`);
+
+        console.log(`${sendedDate} === ${data}? ${sendedDate === data}`);
+
+        console.groupEnd();
       });
     </script>
   </body>
