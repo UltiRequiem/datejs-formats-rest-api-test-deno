@@ -15,7 +15,7 @@
       submitButton.addEventListener("click", async () => {
         const response = await fetch("/api");
 
-        const { date } = await response.json();
+        const { date, timeZone } = await response.json();
 
         const backendDate = new Date(date);
 
@@ -23,7 +23,8 @@
 
         console.group("Round");
 
-        console.log(backendDate);
+        console.log(backendDate, timeZone);
+
         console.log(frontendDate);
 
         console.groupEnd();

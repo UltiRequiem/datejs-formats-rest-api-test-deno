@@ -25,7 +25,9 @@ const handler: Handler = async (request) => {
   if (pathname === "/api") {
     const date = new Date();
 
-    return new Response(JSON.stringify({ date: date.valueOf() }));
+    const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+
+    return new Response(JSON.stringify({ date: date.valueOf(), timeZone }));
   }
 
   return new Response("Route not found.", { status: 404 });
