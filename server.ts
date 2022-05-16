@@ -1,6 +1,6 @@
 import { serve, Handler } from "https://deno.land/std@0.138.0/http/server.ts";
 
-const app = Deno.readTextFileSync("app.html");
+const app = await Deno.readTextFile("app.html");
 
 const handler: Handler = async (request) => {
   if (request.method !== "GET" && request.method !== "POST") {
