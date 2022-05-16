@@ -23,25 +23,9 @@ const handler: Handler = async (request) => {
   }
 
   if (pathname === "/api") {
-    if (!request.body) {
-      return new Response("Body is required.");
-    }
+    const date = new Date();
 
-    const reader = request.body.getReader();
-
-    const { value } = await reader.read();
-
-    if (!value) {
-      return new Response("No value on body.");
-    }
-
-    const text = new TextDecoder().decode(value);
-
-    const data = JSON.parse(text);
-
-    const date = new Date(data.date);
-
-    return new Response(JSON.stringify({ date: date.toISOString() }));
+    return new Response(JSON.stringify({ date: date.valueOf() }));
   }
 
   return new Response("Route not found.", { status: 404 });

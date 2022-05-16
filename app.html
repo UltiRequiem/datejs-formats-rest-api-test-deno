@@ -7,36 +7,24 @@
   </head>
   <body>
     <h1>Test</h1>
-    <input type="date" name="date" id="date_input" />
-
     <button id="submit_button">Submit</button>
 
     <script defer>
-      const dateInput = document.getElementById("date_input");
       const submitButton = document.getElementById("submit_button");
 
       submitButton.addEventListener("click", async () => {
-        if (!dateInput.value) {
-          return alert("Please enter a date");
-        }
+        const response = await fetch("/api");
 
-        const date = new Date(dateInput.value);
+        const { date } = await response.json();
 
-        const sendedDate = date.valueOf();
+        const backendDate = new Date(date);
 
-        const response = await fetch("/api", {
-          method: "POST",
-          body: JSON.stringify({ date: sendedDate }),
-        });
+        const frontendDate = new Date();
 
-        const data = await response.json();
+        console.group("Round");
 
-        console.group("First Request");
-
-        console.log(`Sended date: ${sendedDate}`);
-        console.log(`Server Response ${data.date}`);
-
-        console.log(`Equal? ${date.toISOString() === data.date}`);
+        console.log(backendDate);
+        console.log(frontendDate);
 
         console.groupEnd();
       });
