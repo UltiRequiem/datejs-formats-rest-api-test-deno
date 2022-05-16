@@ -4,14 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script defer></script>
   </head>
   <body>
     <h1>Test</h1>
-    <form action="/api" method="post">
-      <input type="date" name="date" />
+    <input type="date" name="date" id="date_input" />
 
-      <button type="submit">Submit</button>
-    </form>
+    <button id="submit_button">Submit</button>
+
+    <script defer>
+      const dateInput = document.getElementById("date_input");
+      const submitButton = document.getElementById("submit_button");
+
+      submitButton.addEventListener("click", async () => {
+        if (!dateInput.value) {
+          return alert("Please enter a date");
+        }
+
+        const date = new Date(dateInput.value);
+
+        const sendedDate = date.valueOf();
+
+        const response = await fetch("/api", {
+          method: "POST",
+          body: JSON.stringify({ date: sendedDate }),
+        });
+
+        const data = await response.json();
+
+              console.log(`Sended date: ${sendedDate}`);
+        console.log(`Server Response ${data}`);
+      });
+    </script>
   </body>
 </html>
