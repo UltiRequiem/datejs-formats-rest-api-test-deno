@@ -1,8 +1,8 @@
-import { serve, Handler } from "https://deno.land/std@0.138.0/http/server.ts";
+import { Handler, serve } from "https://deno.land/std@0.167.0/http/server.ts";
 
 const app = await Deno.readTextFile("app.html");
 
-const handler: Handler = async (request) => {
+const handler: Handler = (request) => {
   if (request.method !== "GET" && request.method !== "POST") {
     return new Response("Method not allowed.", { status: 400 });
   }
